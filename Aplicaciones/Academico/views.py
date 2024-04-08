@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import Curso
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -41,14 +43,16 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+
         user = authenticate(request, username=username, password=password)
+        
         if user is not None:
             login(request, user)
             return redirect('protegida')
         else:
-            # Maneja credenciales inválidas aquí
-            pass
-    return render(request, 'login.html', {})
+            messages.error(request, 'Credenciales inválidas. Intentelo de nuevo.')
+            
+    return render(request, 'login.html')
 
 def protegida_view(request):
     # Accesible únicamente a usuarios autenticados

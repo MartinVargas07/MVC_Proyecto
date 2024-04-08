@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>Iniciar sesión</h2>
+<form method="post">
+  {% csrf_token %}
+  <label for="usuario">Usuario:</label>
+
+  <input type="text" id="usuario" name="usuario">
+
+  <label for="contraseña">Contraseña:</label>
+
+  <input type="password" id="contraseña" name="contraseña">
+
+  <button type="submit">Ingresar</button>
+</form>
+{% endblock %}
