@@ -38,5 +38,18 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="{% static 'js/gestionCursos.js' %}"></script>
+
+    {# Nuevo código para mostrar los mensajes #}
+    {% if messages %}
+      {% for message in messages %}
+         <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3 mb-0" role="alert">
+           {{ message|safe }}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+      {% empty %}
+        <p>{% trans "No hay mensajes disponibles." %}</p>
+      {% endfor %}
+    {% endif %}
+
 </body>
 </html>
