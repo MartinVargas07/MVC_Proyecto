@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .models import Curso
 from django.contrib import messages
-
+from .models import Curso
 
 # Create your views here.
 
@@ -57,5 +56,3 @@ def login_view(request):
 def protegida_view(request):
     # Accesible únicamente a usuarios autenticados
     return render(request, 'protegido.html', {'mensaje': 'Esta es una página protegida.'})
-
-    
