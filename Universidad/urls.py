@@ -16,13 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Aplicaciones.Academico.views import login_view, protegida_view
-
+from Aplicaciones.Academico.views import login_view, protected_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('Aplicaciones.Academico.urls')),
     path('academico/', include('Aplicaciones.Academico.urls')),
-    path('academico/protegida/', protegida_view, name='protegida'),
+    path('academico/protegida/', protected_view, name='protegida'),
 ]
 
