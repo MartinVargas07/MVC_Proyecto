@@ -58,5 +58,5 @@ def protegida_view(request):
     return render(request, 'protegido.html', {'mensaje': 'Esta es una página protegida.'})
 
 def index(request):
-    return render(request, 'academico/index.html')
+    return render(request, 'index.html')
 
