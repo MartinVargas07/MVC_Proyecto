@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 from .models import Curso
 
 # Create your views here.
@@ -14,7 +15,6 @@ def registrarCurso(request):
     
     curso=Curso.objects.create(codigo=codigo, nombre=nombre, creditos=creditos)
     return redirect('/')
-
 
 def edicionCurso(request, codigo):
     curso = Curso.objects.get(codigo=codigo)
@@ -36,5 +36,22 @@ def eliminarCurso(request, codigo):
     curso = Curso.objects.get(codigo=codigo)
     curso.delete()
     return redirect('/')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('protegida')
+        else:
+            # Maneja credenciales inválidas aquí
+            pass
+    return render(request, 'login.html', {})
+
+def protegida_view(request):
+    # Accesible únicamente a usuarios autenticados
+    return render(request, 'protegido.html', {'mensaje': 'Esta es una página protegida.'})
 
     
