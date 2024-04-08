@@ -59,3 +59,4 @@ def protegida_view(request):
 
 def index(request):
     return render(request, 'academico/index.html')
+
