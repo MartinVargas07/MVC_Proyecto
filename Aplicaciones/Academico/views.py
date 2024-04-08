@@ -4,8 +4,10 @@ from django.contrib import messages
 from .models import Curso
 
 # Create your views here.
-
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
     cursosListados = Curso.objects.all()
     return render(request, "gestionCursos.html", {"cursos": cursosListados})
 
@@ -44,19 +46,17 @@ def login_view(request):
         password = request.POST['password']
 
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
-            return redirect('protegida')
+            return redirect('protected_view')
         else:
-            messages.error(request, 'Credenciales inválidas. Intentelo de nuevo.')
-            
+            messages.error(request, 'Invalid credentials')
+
     return render(request, 'login.html')
 
-def protegida_view(request):
-    # Accesible únicamente a usuarios autenticados
-    return render(request, 'protegido.html', {'mensaje': 'Esta es una página protegida.'})
-
+def protected_view(request):
+    return render(request, 'protected.html')
 def index(request):
     return render(request, 'index.html')
 

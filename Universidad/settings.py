@@ -123,6 +123,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/academico/login/'
-LOGOUT_REDIRECT_URL = '/academico/'
-
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'protegida'
+LOGOUT_REDIRECT_URL = 'index'

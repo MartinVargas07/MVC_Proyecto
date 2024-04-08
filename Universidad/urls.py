@@ -20,9 +20,9 @@ from Aplicaciones.Academico.views import login_view, protegida_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('Aplicaciones.Academico.urls')),
     path('academico/', include('Aplicaciones.Academico.urls')),
-    path('academico/login/', login_view, name='login'),
     path('academico/protegida/', protegida_view, name='protegida'),
 ]
 
